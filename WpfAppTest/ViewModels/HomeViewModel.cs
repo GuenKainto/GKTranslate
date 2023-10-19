@@ -29,7 +29,6 @@ namespace WpfAppTest.ViewModels
             }
         }
 
-
         private ObservableCollection<Models.User> _listUser;
 
         public ObservableCollection<Models.User> ListUser
