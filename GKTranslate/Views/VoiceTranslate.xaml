@@ -1,0 +1,218 @@
+﻿<UserControl x:Class="GKTranslate.Views.VoiceTranslate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GKTranslate.Views"
+             mc:Ignorable="d" FontSize="19"
+             d:DesignHeight="680" d:DesignWidth="1280">
+    <!--BackGround-->
+    <UserControl.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="LightYellow" Offset="0.0" />
+            <GradientStop Color="PaleVioletRed" Offset="0.75" />
+            <GradientStop Color="LightBlue" Offset="0.25" />
+            <GradientStop Color="LightGreen" Offset="1.0" />
+        </LinearGradientBrush>
+
+    </UserControl.Background>
+
+    <!--Style-->
+    <UserControl.Resources>
+        <!--TextBox-->
+        <Style x:Key="TextBoxWithBorder" TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="#FF333236" BorderBrush="White"
+                              BorderThickness="5" CornerRadius="10">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <!--Button-->
+        <Style x:Key="ButtonWithBorder" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="#FF333236" BorderBrush="White" 
+                              BorderThickness="4" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <!--ComboBox-->
+        <Style x:Key="ComboBoxWithBorder" TargetType="ComboBox">
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="4"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+
+        <!--Label-->
+        <Style x:Key="LabelDark" TargetType="Label">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+        </Style>
+    </UserControl.Resources>
+
+    <UserControl.InputBindings>
+        <KeyBinding Key="Q"
+                    Modifiers="Ctrl"
+                    Command="{Binding StartCommand}"/>
+    </UserControl.InputBindings>
+    
+    <Grid>
+        <!--3 Column 5 Row-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <!--Header-->
+        <Grid Grid.Row="1" Grid.Column="0"
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center"
+            Margin="70 20 20 20">
+            <Border BorderBrush="White" BorderThickness="4"
+                  CornerRadius="10" Padding="5">
+                <Image Source="/Images/smallest.jpg" />
+            </Border>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="2"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center">
+            <Label Content="Voice Translate"
+                 FontSize="50" FontWeight="Bold"
+                 Foreground="White"/>
+            <Label Content="Voice Translate"
+                 FontSize="50" FontWeight="Bold"
+                 Foreground="Black" Margin="-6,0,6,0"/>
+        </Grid>
+
+
+        <!--ComboBox-->
+        <Grid Grid.Row="2" Grid.Column="0"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center">
+            <Label Style="{StaticResource LabelDark}"
+                 Content="From" Margin="-73,0,109,0"/>
+            <ComboBox Width="100" 
+                    Style="{StaticResource ComboBoxWithBorder}" 
+                    DisplayMemberPath="Name"
+                    SelectedValuePath="Value"
+                    SelectedItem="{Binding SelectedFrom_cb}"
+                    ItemsSource="{Binding Language_cb}"/>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="2"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center">
+            <Label Style="{StaticResource LabelDark}"
+                 Width="50" Content="To" Margin="-100,0,100,0"/>
+            <ComboBox Width="100" 
+                    Style="{StaticResource ComboBoxWithBorder}"
+                    DisplayMemberPath="Name"
+                    SelectedValuePath="Value"
+                    SelectedItem="{Binding SelectedTo_cb}"
+                    ItemsSource="{Binding Language_cb}"/>
+        </Grid>
+
+        <!--Button-->
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button Content="{Binding StateButton}"
+                  Style="{StaticResource ButtonWithBorder}"
+                  Command="{Binding StartCommand}" 
+                  MinWidth="100" MaxWidth="150"
+                  MinHeight="40" MaxHeight="60"
+                  Background="LightGray"
+                  Grid.Row="1"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center">
+                <Button.InputBindings>
+                    <KeyBinding Key="F7"  Modifiers="Ctrl" />
+                </Button.InputBindings>
+            </Button>
+
+
+            <Button Content="Copy"
+                  Style="{StaticResource ButtonWithBorder}"
+                  Command="{Binding CopyCommand}" 
+                  MinWidth="100" MaxWidth="150"
+                  MinHeight="40" MaxHeight="60"
+                  Background="LightGray"
+                  Grid.Row="2"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center">
+            </Button>
+
+            <Button Content="Reload"
+                  Style="{StaticResource ButtonWithBorder}"
+                  Command="{Binding ReloadCommand}" 
+                  MinWidth="100" MaxWidth="150"
+                  MinHeight="40" MaxHeight="60"
+                  Background="LightGray"
+                  Grid.Row="3"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center">
+            </Button>
+        </Grid>
+
+        <!--TextBox input output-->
+        <Grid Grid.Row="3" Grid.Column="0"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center">
+            <Label Style="{StaticResource LabelDark}"
+                 Content="Input" Margin="10,0,380,357"/>
+
+            <TextBox Style="{StaticResource TextBoxWithBorder}" 
+                   Text="{Binding InputTxb,
+                          Mode=TwoWay,
+                          UpdateSourceTrigger=PropertyChanged}" 
+                   TextWrapping="Wrap" 
+                   AcceptsReturn="True" 
+                   Margin="10,35,10,-17"
+                   VerticalScrollBarVisibility="Auto" 
+                   HorizontalScrollBarVisibility="Auto">
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="3" Grid.Column="2"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center">
+            <Label Style="{StaticResource LabelDark}"
+                 Content="Output" Margin="10,0,380,357"/>
+            <TextBox Style="{StaticResource TextBoxWithBorder}"
+                   Margin="10,35,10,-17"
+                   Text="{Binding OutputTxb, Mode=OneWay}"                 
+                   TextWrapping="Wrap" 
+                   AcceptsReturn="True" 
+                   VerticalScrollBarVisibility="Auto" 
+                   HorizontalScrollBarVisibility="Auto"
+                   IsReadOnly="True"/>
+        </Grid>
+    </Grid>
+</UserControl>

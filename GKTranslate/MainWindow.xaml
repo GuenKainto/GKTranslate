@@ -1,0 +1,52 @@
+﻿<Window x:Class="GKTranslate.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GKTranslate"
+        xmlns:views="clr-namespace:GKTranslate.Views"
+        xmlns:viewModels="clr-namespace:GKTranslate.ViewModel"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="GKTranslate" Height="720" Width="1280"
+        FontSize="19" FontFamily="Segoe UI Semibold">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    
+    <Window.Resources>
+        <DataTemplate DataType = "{x:Type viewModels:TextTranslateViewModel}">
+            <views:TextTranslate/>
+        </DataTemplate>
+
+        <DataTemplate DataType = "{x:Type viewModels:VoiceTranslateViewModel}">
+            <views:VoiceTranslate/>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height = "40" />
+            <RowDefinition Height = "680" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name = "NavBar">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width = "*" />
+                <ColumnDefinition Width = "*" />
+                <ColumnDefinition Width = "*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Content = "TextTranslate" 
+            Command = "{Binding NavCommand}"
+            CommandParameter = "text" 
+            Grid.Column = "0" />
+
+            <Button Content = "VoiceTranslate" 
+            Command = "{Binding NavCommand}" 
+            CommandParameter = "voice" 
+            Grid.Column = "1" />
+        </Grid>
+
+        <ContentControl Grid.Row="1" Content = "{Binding CurrentViewModel}" />
+    </Grid>
+</Window>
