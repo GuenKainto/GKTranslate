@@ -34,7 +34,7 @@ namespace GKTranslate.Service
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex+" ","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                    Console.WriteLine(ex.Message);
                     return "ERROR";
                 }
             }

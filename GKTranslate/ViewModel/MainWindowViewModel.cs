@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GKTranslate
+namespace GKTranslate.ViewModel
 {
     internal class MainWindowViewModel : BindableBase
     {

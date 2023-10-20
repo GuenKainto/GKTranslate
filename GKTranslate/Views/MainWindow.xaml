@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GKTranslate"
+        xmlns:local="clr-namespace:GKTranslate.ViewModel"
         xmlns:views="clr-namespace:GKTranslate.Views"
         xmlns:viewModels="clr-namespace:GKTranslate.ViewModel"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"

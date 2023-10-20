@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:GKTranslate.Views"
              mc:Ignorable="d"  
              d:DesignHeight="680" d:DesignWidth="1280"
@@ -201,6 +202,11 @@
                      Margin="10,35,10,-17"
                      VerticalScrollBarVisibility="Auto" 
                      HorizontalScrollBarVisibility="Auto">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction Command="{Binding TranslateCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </TextBox>
         </Grid>
         <Grid Grid.Row="3" Grid.Column="2"

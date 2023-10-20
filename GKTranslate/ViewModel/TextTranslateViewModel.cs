@@ -64,7 +64,6 @@ namespace GKTranslate.ViewModel
                 {
                     _inputTxb = value;
                     OnPropertyChanged(nameof(InputTxb));
-                    if (CanTranslate()) OutputTxb = Sv.TextTranslated(InputTxb, SelectedFrom_cb.Value, SelectedTo_cb.Value);
                     TranslateCommand.RaiseCanExecuteChanged();
                     ChangeCommand.RaiseCanExecuteChanged();
                 }
